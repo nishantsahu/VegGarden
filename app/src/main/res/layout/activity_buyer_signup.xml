@@ -16,7 +16,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -44,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/bsignemail"
                         android:hint="E-mail"
-                        android:layout_marginVertical="20dp"/>
+                        android:layout_marginVertical="15dp"/>
 
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
@@ -56,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/bsigncontact"
                         android:hint="Contact"
-                        android:layout_marginVertical="20dp"/>
+                        android:layout_marginVertical="15dp"/>
 
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
@@ -68,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/bsignadhar"
                         android:hint="Aadhar No"
-                        android:layout_marginVertical="20dp"/>
+                        android:layout_marginVertical="15dp"/>
 
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
@@ -81,7 +82,7 @@
                         android:id="@+id/bsignpass"
                         android:hint="Password"
                         android:inputType="textPassword"
-                        android:layout_marginVertical="20dp"/>
+                        android:layout_marginVertical="15dp"/>
 
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
@@ -94,7 +95,7 @@
                         android:id="@+id/bsigncpass"
                         android:hint="Confirm Password"
                         android:inputType="textPassword"
-                        android:layout_marginVertical="20dp"/>
+                        android:layout_marginVertical="15dp"/>
 
                 </android.support.design.widget.TextInputLayout>
 
