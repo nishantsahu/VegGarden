@@ -1,7 +1,9 @@
 package com.example.rupik.veggarden;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ public class FarmerSignupActivity extends AppCompatActivity {
 
     EditText mName, mEmail, mContact, mAadhar, mPass, mConfirmPass;
     Button mSignup;
+    String name, email, contact, aadhar, pass, cpass;
     OkHttpClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,6 @@ public class FarmerSignupActivity extends AppCompatActivity {
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name, email, contact, aadhar, pass, cpass;
                 name = mName.getText().toString();
                 email = mEmail.getText().toString();
                 contact = mContact.getText().toString();
@@ -49,49 +51,83 @@ public class FarmerSignupActivity extends AppCompatActivity {
 
                 client = new OkHttpClient();
 
-                Request request = new Request.Builder()
-                        .url("https://veggarden123.herokuapp.com/addUser")
-                        .post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
-                                "\t\"name\" : \""+name+"\",\n" +
-                                "\t\"email\" : \""+email+"\",\n" +
-                                "\t\"contact\" : \""+contact+"\",\n" +
-                                "\t\"aadhar\" : \""+aadhar+"\",\n" +
-                                "\t\"password\" : \""+pass+"\"\n" +
-                                "}")).build();
-                client.newCall(request).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(FarmerSignupActivity.this, "Connection error", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
+                if (TextUtils.isEmpty(name))
+                    mName.setError("Required");
+                if (TextUtils.isEmpty(email))
+                    mEmail.setError("Required");
+                if (TextUtils.isEmpty(contact))
+                    mContact.setError("Required");
+                if (TextUtils.isEmpty(aadhar))
+                    mAadhar.setError("Required");
+                if (TextUtils.isEmpty(pass))
+                    mPass.setError("Required");
+                if (TextUtils.isEmpty(cpass))
+                    mConfirmPass.setError("Required");
 
-                    @Override
-                    public void onResponse(Call call, final Response response) throws IOException {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    String json = response.body().string();
-                                    JSONObject mainObj = new JSONObject(json);
-                                    JSONObject res = mainObj.getJSONObject("result");
-                                    String result = res.getString("result");
-                                    Toast.makeText(FarmerSignupActivity.this, result, Toast.LENGTH_SHORT).show();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-
+                if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(contact) || TextUtils.isEmpty(aadhar)||TextUtils.isEmpty(pass) || TextUtils.isEmpty(cpass))
+                {}
+                else {
+                    if(cpass.equals(pass))
+                    {
+                        addUser();
                     }
-                });
+                    else {
+                        mConfirmPass.setError("Password is not same");
+                    }
+                }
+
+
             }
         });
 
+    }
+    private void addUser() {
+        final Request request = new Request.Builder()
+                .url("https://veggarden123.herokuapp.com/addUser")
+                .post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
+                        "\t\"name\" : \""+name+"\",\n" +
+                        "\t\"email\" : \""+email+"\",\n" +
+                        "\t\"contact\" : \""+contact+"\",\n" +
+                        "\t\"aadhar\" : \""+aadhar+"\",\n" +
+                        "\t\"password\" : \""+pass+"\"\n" +
+                        "}")).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(FarmerSignupActivity.this, "Connection error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String json = response.body().string();
+                            JSONObject mainObj = new JSONObject(json);
+                            String result = mainObj.getString("result");
+                            if (result.equals("success"))
+                            {
+                                Intent i = new Intent(getApplicationContext(), FarmerDashboardActivity.class);
+                                startActivity(i);
+                            }
+                            else {
+                                Toast.makeText(FarmerSignupActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+            }
+        });
     }
 }
