@@ -81,7 +81,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/bsignpass"
                         android:hint="Password"
-                        android:inputType="textPassword"
                         android:layout_marginVertical="15dp"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -94,7 +93,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/bsigncpass"
                         android:hint="Confirm Password"
-                        android:inputType="textPassword"
                         android:layout_marginVertical="15dp"/>
 
                 </android.support.design.widget.TextInputLayout>
