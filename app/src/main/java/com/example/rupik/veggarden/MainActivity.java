@@ -8,7 +8,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView mFarmer;
+    CardView mFarmer, mBuyer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), FarmerSignupActivity.class);
+                startActivity(i);
+            }
+        });
+
+        mBuyer = findViewById(R.id.mBuyer);
+
+        mBuyer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), BuyerSignupActivity.class);
                 startActivity(i);
             }
         });

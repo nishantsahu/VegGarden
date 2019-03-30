@@ -14,15 +14,5 @@ public class BuyerSignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_signup);
 
-        mBuyer = findViewById(R.id.mBuyer);
-
-        mBuyer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), BuyerSignupActivity.class);
-                startActivity(i);
-            }
-        });
-
     }
 }
