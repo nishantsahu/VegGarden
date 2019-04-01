@@ -85,7 +85,7 @@ public class FarmerSignupActivity extends AppCompatActivity {
         final Request request = new Request.Builder()
                 .url("https://veggarden123.herokuapp.com/addUser")
                 .post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
-                        "\t\"name\" : \""+name+"\",\n" +
+                        "\t\"names\" : \""+name+"\",\n" +
                         "\t\"email\" : \""+email+"\",\n" +
                         "\t\"contact\" : \""+contact+"\",\n" +
                         "\t\"aadhar\" : \""+aadhar+"\",\n" +
