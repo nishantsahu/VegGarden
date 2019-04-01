@@ -102,25 +102,38 @@ public class BuyerSignupActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Toast.makeText(BuyerSignupActivity.this, "Connection Error", Toast.LENGTH_SHORT).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(BuyerSignupActivity.this, "Connection Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String json=response.body().string();
-                try {
-                    JSONObject mainobj=new JSONObject(json);
-                    String result=mainobj.getString("result");
-                    if(result.equals("success"))
-                    {
-                        Intent i=new Intent(getApplicationContext(),BuyerDashboardActivity.class);
-                        startActivity(i);
-                    } else {
-                        Toast.makeText(BuyerSignupActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call call, final Response response) throws IOException {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String json=response.body().string();
+                            JSONObject mainobj=new JSONObject(json);
+                            String result=mainobj.getString("result");
+                            if(result.equals("success"))
+                            {
+                                Intent i=new Intent(getApplicationContext(),BuyerDashboardActivity.class);
+                                startActivity(i);
+                            } else {
+                                Toast.makeText(BuyerSignupActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                });
             }
         });
 
