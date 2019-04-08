@@ -1,55 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.rupik.veggarden.FarmerDashboardActivity"
-    tools:showIn="@layout/app_bar_farmer_dashboard">
+    tools:showIn="@layout/app_bar_farmer_dashboard"
+    android:background="@color/colorPrimary">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp">
+        android:background="@drawable/dashboard_bg"></RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="34dp"
+        android:layout_marginTop="18dp"
+        android:id="@+id/name_layout">
         <TextView
+            android:id="@+id/farmername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Robin sharma"
-            android:id="@+id/farmername"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1234567890"
-            android:id="@+id/buyercontact"
-            android:layout_below="@+id/buyername"
-            android:layout_marginTop="5dp" />
-    </RelativeLayout>
+            android:text="Robin Sharma"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp">
+        android:layout_marginHorizontal="26dp"
+        android:layout_below="@+id/name_layout"
+        android:layout_marginVertical="30dp">
         <android.support.v7.widget.CardView
+            android:layout_width="170dp"
+            android:layout_height="180dp"
             android:layout_column="0"
             android:layout_row="0"
-            android:layout_margin="10dp"
-            android:elevation="10dp">
-            <LinearLayout
+            app:cardCornerRadius="5dp"
+            app:cardBackgroundColor="@color/blueTransparent">
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:padding="35dp">
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:id="@+id/land_icon"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_foreground"
-                    />
+                    android:src="@drawable/iconbg"
+                    android:layout_centerHorizontal="true"/>
                 <TextView
-                    android:layout_width="match_parent"
+                    android:paddingTop="10dp"
+                    android:layout_below="@+id/land_icon"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Find Farms"
-                    android:textAlignment="center"/>
-            </LinearLayout>
+                    android:textColor="@color/white"
+                    android:text="Land Details"
+                    android:textSize="18dp"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_column="1"
+            android:layout_row="0"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            app:cardCornerRadius="5dp"
+            android:layout_marginLeft="20dp"
+            app:cardBackgroundColor="@color/blueTransparent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="35dp">
+                <ImageView
+                    android:id="@+id/crop_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/iconbg"
+                    android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:paddingTop="10dp"
+                    android:layout_below="@+id/crop_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Crop Details"
+                    android:textSize="18dp"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="20dp"
+            android:layout_column="0"
+            android:layout_row="1"
+            app:cardCornerRadius="5dp"
+            app:cardBackgroundColor="@color/blueTransparent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="35dp">
+                <ImageView
+                    android:id="@+id/request_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/iconbg"
+                    android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:paddingTop="10dp"
+                    android:layout_below="@+id/request_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Requests"
+                    android:textSize="18dp"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="5dp"
+            android:layout_marginLeft="20dp"
+            app:cardBackgroundColor="@color/blueTransparent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="35dp">
+                <ImageView
+                    android:id="@+id/aggrement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/iconbg"
+                    android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:paddingTop="10dp"
+                    android:layout_below="@+id/aggrement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Aggrements"
+                    android:textSize="18dp"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
         </android.support.v7.widget.CardView>
 
     </GridLayout>
-</LinearLayout>
+
+</RelativeLayout>

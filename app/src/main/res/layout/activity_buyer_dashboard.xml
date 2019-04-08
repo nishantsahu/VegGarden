@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BuyerDashboardActivity">
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -15,17 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Robin sharma"
-            android:id="@+id/buyername"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1234567890"
-            android:id="@+id/buyercontact"
-            android:layout_below="@+id/buyername"
-            android:layout_marginTop="5dp"
-            />
-    </RelativeLayout>
+            android:id="@+id/buyername" />
+
+    </LinearLayout>
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

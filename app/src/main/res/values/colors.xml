@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#FB9846</color>
     <color name="colorAccent">#FC9A45</color>
     <color name="colorDarkBlue">#0D1D36</color>
+    <color name="blueTransparent">#98172646</color>
     <color name="pinkGradient">#F85174</color>
     <color name="orangeGradient">#FC9A45</color>
     <color name="white">#ffffff</color>

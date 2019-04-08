@@ -1,9 +1,12 @@
-<resources>
-    <string name="app_name">VegGarden</string>
-    <string name="title_activity_farmer_dashboard">FarmerDashboardActivity</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
-</resources>
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config>
+        <device id="pixel" />
+        <device id="wear_round_chin_320_290" />
+        <device id="Nexus 7 2013" />
+        <device id="Nexus 10" />
+        <device id="pixel_xl" />
+        <device id="pixel_2_xl" />
+        <device id="Nexus 6P"
