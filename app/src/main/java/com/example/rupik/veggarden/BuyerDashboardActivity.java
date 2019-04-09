@@ -19,14 +19,13 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class BuyerDashboardActivity extends AppCompatActivity {
-    TextView mName, mContact;
+    TextView mName;
     OkHttpClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_dashboard);
         mName = findViewById(R.id.buyername);
-        mContact = findViewById(R.id.buyercontact);
 
         getuser();
     }
@@ -58,9 +57,7 @@ public class BuyerDashboardActivity extends AppCompatActivity {
                             String json=response.body().string();
                             JSONObject jsonobj=new JSONObject(json);
                             String name=jsonobj.getString("name");
-                            String contact=jsonobj.getString("contact");
                             mName.setText(name);
-                            mContact.setText(contact);
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
