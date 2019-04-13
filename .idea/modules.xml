@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/VegGarden.iml" filepath="$PROJECT_DIR$/VegGarden.iml" />
-      <module fileurl="file://$PROJECT_DIR$/VegGardens.iml" filepath="$PROJECT_DIR$/VegGardens.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

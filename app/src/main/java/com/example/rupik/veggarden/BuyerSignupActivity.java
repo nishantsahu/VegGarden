@@ -91,7 +91,7 @@ public class BuyerSignupActivity extends AppCompatActivity {
     private void addUser() {
 
         Request request=new Request.Builder()
-                .url("https://veggarden123.herokuapp.com/addUser")
+                .url(Api.BASE_URL+"/addUser")
                 .post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
                         "\t\"names\" : \""+name+"\",\n" +
                         "\t\"email\" : \""+email+"\",\n" +

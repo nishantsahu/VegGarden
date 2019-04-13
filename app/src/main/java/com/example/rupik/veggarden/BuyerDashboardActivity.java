@@ -34,7 +34,7 @@ public class BuyerDashboardActivity extends AppCompatActivity {
         String uid,name,contact;
         uid="34";
         client=new OkHttpClient();
-        Request request=new Request.Builder().url("https://veggarden123.herokuapp.com/getUser").post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
+        Request request=new Request.Builder().url(Api.BASE_URL+"/getUser").post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
                 "            \"uid\" : \""+uid+"\"\n" +
                 "        }")).build();
         client.newCall(request).enqueue(new Callback() {
