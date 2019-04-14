@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -28,6 +29,7 @@ public class FarmerSignupActivity extends AppCompatActivity {
     Button mSignup;
     String name, email, contact, aadhar, pass, cpass;
     OkHttpClient client;
+    TextView mLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,14 @@ public class FarmerSignupActivity extends AppCompatActivity {
         mAadhar = findViewById(R.id.fsignadhar);
         mPass = findViewById(R.id.fsignpass);
         mConfirmPass = findViewById(R.id.fsigncpass);
+        mLogin = findViewById(R.id.farmerLogin);
+        mLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent farmerDashboard = new Intent(getApplicationContext(), FarmerDashboardActivity.class);
+                startActivity(farmerDashboard);
+            }
+        });
         mSignup = findViewById(R.id.fsignupbtn);
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override

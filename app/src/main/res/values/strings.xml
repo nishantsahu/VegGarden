@@ -1,9 +1,9 @@
 <resources>
-  <string name="app_name">VegGarden</string>
-  <string name="title_activity_farmer_dashboard">FarmerDashboardActivity</string>
+    <string name="app_name">VegGarden</string>
+    <string name="title_activity_farmer_dashboard">FarmerDashboardActivity</string>
 
-  <string name="navigation_drawer_open">Open navigation drawer</string>
-  <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
-  <string name="action_settings">Settings</string>
+    <string name="action_settings">Settings</string>
 </resources>

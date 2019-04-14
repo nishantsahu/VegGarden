@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="soil_type_array">
+        <item>Black Soil</item>
+        <item>Red Soil</item>
+    </string-array>
+</resources>
