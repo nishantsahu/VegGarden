@@ -96,7 +96,7 @@ public class BuyerSignupActivity extends AppCompatActivity {
                         "\t\"names\" : \""+name+"\",\n" +
                         "\t\"email\" : \""+email+"\",\n" +
                         "\t\"contact\" : \""+contact+"\",\n" +
-                        "\t\"aadhar\" : \""+aadhar+"\",\n" +
+                        "\t\"address\" : \""+aadhar+"\",\n" +
                         "\t\"password\" : \""+password+"\"\n" +
                         "}")).build();
         client.newCall(request).enqueue(new Callback() {

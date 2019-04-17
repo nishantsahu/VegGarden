@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddLandActivity"></activity>
+        <activity android:name=".AuthFarmerActivity"></activity>
+        <activity android:name=".AddLandActivity" />
         <activity android:name=".LandDetailsActivity" />
         <activity android:name=".BuyerDashboardActivity" />
         <activity android:name=".MainActivity">

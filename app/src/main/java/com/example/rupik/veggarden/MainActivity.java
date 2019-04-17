@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         mFarmer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), FarmerSignupActivity.class);
+                Intent i = new Intent(getApplicationContext(), AuthFarmerActivity.class);
                 startActivity(i);
             }
         });

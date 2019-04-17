@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Signup"
+                    android:text="Update Details"
                     android:textAlignment="center"
                     android:textSize="25dp"
                     android:textStyle="bold"
@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/fsignname"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -51,11 +51,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/fsignemail"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="15dp"
+                        android:inputType="textEmailAddress"
                         android:hint="E-mail" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -65,11 +66,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/fsigncontact"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="15dp"
+                        android:inputType="phone"
+                        android:enabled="false"
                         android:hint="Contact" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -79,12 +82,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/fsignadhar"
+                    <EditText
+                        android:id="@+id/fsignaddress"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="15dp"
-                        android:hint="Aadhar No" />
+                        android:hint="Address" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -93,11 +96,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/fsignpass"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="15dp"
+                        android:inputType="textPassword"
                         android:hint="Password" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -107,11 +111,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/fsigncpass"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="15dp"
+                        android:inputType="textPassword"
                         android:hint="Confirm Password" />
                 </android.support.design.widget.TextInputLayout>
                 <RelativeLayout
@@ -121,30 +126,11 @@
                         android:id="@+id/fsignupbtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SignUp"
+                        android:text="Update"
                         android:background="@drawable/bg_gradient"
                         android:textColor="@color/white"
                         android:padding="20dp"
                         android:layout_alignParentRight="true"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp">
-
-                    <TextView
-                        android:id="@+id/ask_acc"
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:text="Already have an account?               " />
-                    <TextView
-                        android:id="@+id/farmerLogin"
-                        android:layout_alignRight="@id/ask_acc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="LOGIN"
-                        android:textColor="@color/colorPrimaryDark"/>
                 </RelativeLayout>
             </LinearLayout>
 
