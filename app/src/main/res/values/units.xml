@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="units_array">
-        <item>Meter square</item>
+        <item>Meter sq</item>
         <item>Yard</item>
         <item>Hectare</item>
         <item>Acre</item>

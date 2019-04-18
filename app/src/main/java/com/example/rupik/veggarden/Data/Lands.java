@@ -2,12 +2,13 @@ package com.example.rupik.veggarden.Data;
 
 public class Lands {
 
-    String landName, landArea, landLocation;
+    String landName, landArea, landAddress, landid;
 
-    public Lands(String landName, String landArea, String landLocation) {
+    public Lands(String landName, String landArea, String landLocation, String landid) {
         this.landName = landName;
         this.landArea = landArea;
-        this.landLocation = landLocation;
+        this.landAddress = landLocation;
+        this.landid = landid;
     }
 
     public String getLandName() {
@@ -18,7 +19,11 @@ public class Lands {
         return landArea;
     }
 
-    public String getLandLocation() {
-        return landLocation;
+    public String getLandAddress() {
+        return landAddress;
+    }
+
+    public String getLandid() {
+        return landid;
     }
 }

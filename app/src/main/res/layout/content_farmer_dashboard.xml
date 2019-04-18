@@ -22,7 +22,6 @@
             android:id="@+id/farmername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Robin Sharma"
             android:textSize="20dp"
             android:textColor="@color/white"/>
     </LinearLayout>

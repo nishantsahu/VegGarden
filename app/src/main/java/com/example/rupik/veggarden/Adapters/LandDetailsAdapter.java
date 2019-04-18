@@ -1,13 +1,18 @@
 package com.example.rupik.veggarden.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rupik.veggarden.Data.Lands;
+import com.example.rupik.veggarden.DetailLandActivity;
+import com.example.rupik.veggarden.LandDetailsActivity;
 import com.example.rupik.veggarden.R;
 
 import java.util.List;
@@ -32,13 +37,23 @@ public class LandDetailsAdapter extends RecyclerView.Adapter<LandDetailsAdapter.
     @Override
     public void onBindViewHolder(LandDetailsViewHolder holder, int position) {
 
-        Lands lands = landsList.get(position);
+        final Lands lands = landsList.get(position);
 
         holder.mLandName.setText(lands.getLandName());
         holder.mLandArea.setText(lands.getLandArea());
-        holder.mLandLocation.setText(lands.getLandLocation());
+        holder.mLandLocation.setText(lands.getLandAddress());
+        holder.mLandDetailCards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent detail = new Intent(mCtx, DetailLandActivity.class);
+                detail.putExtra("uid", lands.getLandid());
+                mCtx.startActivity(detail);
+            }
+        });
 
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -48,12 +63,14 @@ public class LandDetailsAdapter extends RecyclerView.Adapter<LandDetailsAdapter.
     class LandDetailsViewHolder extends RecyclerView.ViewHolder {
 
         TextView mLandName, mLandArea, mLandLocation;
+        CardView mLandDetailCards;
         public LandDetailsViewHolder(View itemView) {
             super(itemView);
 
             mLandName = itemView.findViewById(R.id.farmerLandName);
             mLandArea = itemView.findViewById(R.id.farmerLandArea);
             mLandLocation = itemView.findViewById(R.id.farmerLandLocation);
+            mLandDetailCards = itemView.findViewById(R.id.landDetailsCard);
 
         }
     }
