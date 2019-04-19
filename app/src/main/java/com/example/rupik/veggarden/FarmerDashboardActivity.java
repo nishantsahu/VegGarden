@@ -58,6 +58,14 @@ public class FarmerDashboardActivity extends AppCompatActivity
         
         checkUserExistance();
 
+        mCropDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cropDetails = new Intent(getApplicationContext(), CropDetailsFarmerActivity.class);
+                startActivity(cropDetails);
+            }
+        });
+
         mLandDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +74,7 @@ public class FarmerDashboardActivity extends AppCompatActivity
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddLand);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

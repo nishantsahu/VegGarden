@@ -46,7 +46,7 @@ public class LandDetailsAdapter extends RecyclerView.Adapter<LandDetailsAdapter.
             @Override
             public void onClick(View view) {
                 Intent detail = new Intent(mCtx, DetailLandActivity.class);
-                detail.putExtra("uid", lands.getLandid());
+                detail.putExtra("landid", lands.getLandid());
                 mCtx.startActivity(detail);
             }
         });

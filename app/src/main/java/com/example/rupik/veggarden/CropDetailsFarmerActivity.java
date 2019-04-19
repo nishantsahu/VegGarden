@@ -1,18 +1,15 @@
 package com.example.rupik.veggarden;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.Toast;
 
-import com.example.rupik.veggarden.Adapters.LandDetailsAdapter;
-import com.example.rupik.veggarden.Data.Lands;
+import com.example.rupik.veggarden.Adapters.CropDetailsAdapter;
+import com.example.rupik.veggarden.Data.Crops;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,37 +27,36 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class LandDetailsActivity extends AppCompatActivity {
+public class CropDetailsFarmerActivity extends AppCompatActivity {
 
-    RecyclerView mLandList;
-    List<Lands> landsList;
-    LandDetailsAdapter adapter;
+    RecyclerView mCropDetails;
+    CropDetailsAdapter adapter;
+    List<Crops> cropsList;
     OkHttpClient client;
     String uid;
-    ProgressDialog progressDialog;
+    String cropId, cropName, landName, cropPrice, cropQuanity, cropLand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_land_details);
+        setContentView(R.layout.activity_land_details_farmer);
 
-        mLandList = findViewById(R.id.landList);
+        mCropDetails = findViewById(R.id.cropDetailsFarmer);
+        cropsList = new ArrayList<>();
 
-        mLandList.setLayoutManager(new LinearLayoutManager(this));
-        mLandList.setHasFixedSize(true);
-
-        landsList = new ArrayList<>();
-
+        mCropDetails.setLayoutManager(new LinearLayoutManager(this));
         client = new OkHttpClient();
+        
+        getCrops();
+    }
 
-        uid = FirebaseAuth.getInstance().getUid();
+    private void getCrops() {
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait...");
-        progressDialog.show();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        final String uid = mAuth.getCurrentUser().getUid();
 
         Request request = new Request.Builder()
-                .url(Api.BASE_URL+"/getLandDetailsUser")
+                .url(Api.BASE_URL+"/getCropDetailsUser")
                 .post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
                         "\t\"uid\" : \""+uid+"\"\n" +
                         "}"))
@@ -72,9 +68,7 @@ public class LandDetailsActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(LandDetailsActivity.this, "Please check your connection.", Toast.LENGTH_SHORT).show();
-                        Intent auth = new Intent(getApplicationContext(), AuthFarmerActivity.class);
-                        startActivity(auth);
+                        Toast.makeText(CropDetailsFarmerActivity.this, "Check your connection", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -85,15 +79,23 @@ public class LandDetailsActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            progressDialog.hide();
                             String json = response.body().string();
                             JSONArray jsonArray = new JSONArray(json);
                             for (int i=0; i<jsonArray.length(); i++) {
                                 JSONObject obj = jsonArray.getJSONObject(i);
-                                landsList.add(new Lands(obj.getString("landname"), ""+obj.getString("landarea")+" meter sq.", obj.getString("address"), obj.getString("landid")));
+                                cropId = obj.getString("cropid");
+                                landName = obj.getString("landname");
+                                cropName = obj.getString("cropname");
+                                cropPrice = obj.getString("price");
+                                cropLand = obj.getString("landid");
+                                cropQuanity = obj.getString("quantity");
+
+                                cropsList.add(new Crops(cropId, cropName, cropPrice,cropQuanity, cropLand, landName));
                             }
-                            adapter = new LandDetailsAdapter(getApplication(), landsList);
-                            mLandList.setAdapter(adapter);
+
+                            adapter = new CropDetailsAdapter(getApplicationContext(), cropsList);
+                            mCropDetails.setAdapter(adapter);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
@@ -101,15 +103,6 @@ public class LandDetailsActivity extends AppCompatActivity {
                         }
                     }
                 });
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddLand);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent addFarm = new Intent(getApplicationContext(), AddLandActivity.class);
-                startActivity(addFarm);
             }
         });
 
