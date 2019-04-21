@@ -75,7 +75,7 @@ public class AddLandActivity extends AppCompatActivity {
 
                 switch (areaUnit){
                     case "Meter Sq":
-                        area = (float) (Float.parseFloat(landArea));
+                        area = (float) (Float.parseFloat(landArea)*1);
                         break;
                     case "Acre":
                         area = (float) (Float.parseFloat(landArea)*4046.8564);

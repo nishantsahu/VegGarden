@@ -39,6 +39,7 @@ public class DetailLandActivity extends AppCompatActivity {
     CropDetailsAdapterLand adapter;
     List<Crops> cropsList;
     ProgressDialog progressDialog;
+    Intent addCrop;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,14 +60,13 @@ public class DetailLandActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
+        addCrop = new Intent(getApplicationContext(), AddCropActivity.class);
         getLandDetails();
-        getCropDetails();
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddCropLand);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addCrop = new Intent(getApplicationContext(), AddCropActivity.class);
+                addCrop.putExtra("landid",getIntent().getExtras().getString("landid"));
                 startActivity(addCrop);
             }
         });
@@ -163,6 +163,9 @@ public class DetailLandActivity extends AppCompatActivity {
                                 mLandArea.append(" Meter Sq.");
                                 mSoilType.setText(mainObj.getString("soiltype"));
                                 mLandAddress.setText(mainObj.getString("landaddress"));
+                                addCrop.putExtra("landname", mainObj.getString("landname"));
+
+                                getCropDetails();
                             }
                         } catch (IOException e) {
                             e.printStackTrace();

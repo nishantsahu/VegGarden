@@ -1,5 +1,6 @@
 package com.example.rupik.veggarden;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +26,7 @@ public class AuthFarmerActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     EditText mFarmerContactNumber;
     Button mSendVerificationCode;
+    ProgressDialog progressDialog;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +37,13 @@ public class AuthFarmerActivity extends AppCompatActivity {
         mSendVerificationCode = findViewById(R.id.sendVerificationCode);
         mAuth = FirebaseAuth.getInstance();
         checkUser();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("User Authentication");
+        progressDialog.setMessage("Scanning otp from your message..");
         mSendVerificationCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog.show();
                 loginUser();
             }
         });
@@ -44,7 +51,7 @@ public class AuthFarmerActivity extends AppCompatActivity {
 
     private void loginUser() {
 
-        String phone = mFarmerContactNumber.getText().toString();
+        String phone = "+91"+mFarmerContactNumber.getText().toString();
 
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
@@ -55,6 +62,7 @@ public class AuthFarmerActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isComplete()) {
+                                    progressDialog.dismiss();
                                     FirebaseUser user = task.getResult().getUser();
                                     Intent farmerDashboard = new Intent(getApplicationContext(), FarmerDashboardActivity.class);
                                     startActivity(farmerDashboard);
@@ -66,7 +74,8 @@ public class AuthFarmerActivity extends AppCompatActivity {
 
             @Override
             public void onVerificationFailed(FirebaseException e) {
-
+                progressDialog.dismiss();
+                Toast.makeText(AuthFarmerActivity.this, "Something went wrong, Make sure you have inserted the same sim card.", Toast.LENGTH_SHORT).show();
             }
         };
 

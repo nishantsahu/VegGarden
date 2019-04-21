@@ -33,7 +33,6 @@ public class CropDetailsFarmerActivity extends AppCompatActivity {
     CropDetailsAdapter adapter;
     List<Crops> cropsList;
     OkHttpClient client;
-    String uid;
     String cropId, cropName, landName, cropPrice, cropQuanity, cropLand;
 
     @Override
@@ -52,8 +51,7 @@ public class CropDetailsFarmerActivity extends AppCompatActivity {
 
     private void getCrops() {
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        final String uid = mAuth.getCurrentUser().getUid();
+        String uid = FirebaseAuth.getInstance().getUid();
 
         Request request = new Request.Builder()
                 .url(Api.BASE_URL+"/getCropDetailsUser")

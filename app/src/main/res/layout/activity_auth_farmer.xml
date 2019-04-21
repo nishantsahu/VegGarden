@@ -40,8 +40,9 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Your contact number"
+                        android:hint="Enter 10-digit number"
                         android:textAlignment="center"
+                        android:inputType="number"
                         android:id="@+id/farmerContactNumber"/>
                 </android.support.design.widget.TextInputLayout>
             </RelativeLayout>
