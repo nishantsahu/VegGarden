@@ -78,8 +78,11 @@ public class FarmerDashboardActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Logging out", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                FirebaseAuth.getInstance().signOut();
+                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainActivity);
             }
         });
 

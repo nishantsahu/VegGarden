@@ -1,5 +1,6 @@
 package com.example.rupik.veggarden;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,6 +35,7 @@ public class CropDetailsFarmerActivity extends AppCompatActivity {
     List<Crops> cropsList;
     OkHttpClient client;
     String cropId, cropName, landName, cropPrice, cropQuanity, cropLand;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class CropDetailsFarmerActivity extends AppCompatActivity {
         mCropDetails = findViewById(R.id.cropDetailsFarmer);
         cropsList = new ArrayList<>();
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading..");
+
         mCropDetails.setLayoutManager(new LinearLayoutManager(this));
         client = new OkHttpClient();
         
@@ -51,6 +56,7 @@ public class CropDetailsFarmerActivity extends AppCompatActivity {
 
     private void getCrops() {
 
+        progressDialog.show();
         String uid = FirebaseAuth.getInstance().getUid();
 
         Request request = new Request.Builder()
@@ -66,6 +72,7 @@ public class CropDetailsFarmerActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        progressDialog.dismiss();
                         Toast.makeText(CropDetailsFarmerActivity.this, "Check your connection", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -77,6 +84,7 @@ public class CropDetailsFarmerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
+                            progressDialog.dismiss();
                             String json = response.body().string();
                             JSONArray jsonArray = new JSONArray(json);
                             for (int i=0; i<jsonArray.length(); i++) {
