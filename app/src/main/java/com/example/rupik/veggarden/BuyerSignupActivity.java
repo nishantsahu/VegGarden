@@ -136,8 +136,11 @@ public class BuyerSignupActivity extends AppCompatActivity {
                 });
             }
         });
+    }
 
-
-
+    @Override
+    public void onBackPressed() {
+        Intent dashboard = new Intent(getApplicationContext(), BuyerDashboardActivity.class);
+        startActivity(dashboard);
     }
 }

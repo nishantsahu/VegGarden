@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         mBuyer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), BuyerSignupActivity.class);
+                Intent i = new Intent(getApplicationContext(), AuthBuyerActivity.class);
                 startActivity(i);
             }
         });

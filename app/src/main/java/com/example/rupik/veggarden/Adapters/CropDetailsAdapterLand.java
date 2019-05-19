@@ -1,6 +1,7 @@
 package com.example.rupik.veggarden.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rupik.veggarden.Data.Crops;
+import com.example.rupik.veggarden.EditCropActivity;
 import com.example.rupik.veggarden.R;
 
 import java.util.List;
@@ -42,7 +44,9 @@ public class CropDetailsAdapterLand extends RecyclerView.Adapter<CropDetailsAdap
             @Override
             public void onClick(View view) {
                 String cropId = crops.getCropId();
-                Toast.makeText(mCtx, cropId, Toast.LENGTH_SHORT).show();
+                Intent editCrop = new Intent(mCtx, EditCropActivity.class);
+                editCrop.putExtra("cropid", cropId);
+                mCtx.startActivity(editCrop);
             }
         });
     }
