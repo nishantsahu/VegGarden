@@ -1,5 +1,6 @@
 package com.example.rupik.veggarden;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,10 +29,13 @@ import okhttp3.Response;
 
 public class BuyerSignupActivity extends AppCompatActivity {
 
-    EditText mName, mEmail, mContact, mAadhar, mPass, mConfirmPass;
-    String name, email,contact,aadhar,password,confirmpass;
+    EditText mName, mEmail, mContact, mAdress, mPass, mConfirmPass;
+    Button mSignup;
+    String uid, name, email, contact, address, pass, cpass;
     OkHttpClient client;
-    Button mSignup;    @Override
+    ProgressDialog progressDialog;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_signup);
@@ -36,9 +43,15 @@ public class BuyerSignupActivity extends AppCompatActivity {
         mName = findViewById(R.id.bsignname);
         mEmail = findViewById(R.id.bsignemail);
         mContact = findViewById(R.id.bsigncontact);
-        mAadhar = findViewById(R.id.bsignadhar);
+        mAdress = findViewById(R.id.bsignaddress);
         mPass = findViewById(R.id.bsignpass);
         mConfirmPass = findViewById(R.id.bsigncpass);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        uid = user.getUid();
+        contact = user.getPhoneNumber();
+        mContact.setText(contact);
+
         mSignup = findViewById(R.id.bsignupbtn);
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +59,9 @@ public class BuyerSignupActivity extends AppCompatActivity {
 
                 name = mName.getText().toString();
                 email = mEmail.getText().toString();
-                contact = mContact.getText().toString();
-                aadhar = mAadhar.getText().toString();
-                password = mPass.getText().toString();
-                confirmpass = mConfirmPass.getText().toString();
+                address = mAdress.getText().toString();
+                pass = mPass.getText().toString();
+                cpass = mConfirmPass.getText().toString();
 
                 client = new OkHttpClient();
 
@@ -59,28 +71,21 @@ public class BuyerSignupActivity extends AppCompatActivity {
                     mEmail.setError("Required");
                 if (TextUtils.isEmpty(contact))
                     mContact.setError("Required");
-                if (TextUtils.isEmpty(aadhar))
-                    mAadhar.setError("Required");
-                if (TextUtils.isEmpty(password))
+                if (TextUtils.isEmpty(address))
+                    mAdress.setError("Required");
+                if (TextUtils.isEmpty(pass))
                     mPass.setError("Required");
-                if (TextUtils.isEmpty(confirmpass))
+                if (TextUtils.isEmpty(cpass))
                     mConfirmPass.setError("Required");
 
-
-
-                if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(contact) || TextUtils.isEmpty(aadhar)||TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmpass))
-                {}
-                else {
-                    if(confirmpass.equals(password))
-                    {
+                if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(contact) || TextUtils.isEmpty(address) || TextUtils.isEmpty(pass) || TextUtils.isEmpty(cpass)) {
+                } else {
+                    if (cpass.equals(pass)) {
                         addUser();
-                    }
-                    else {
+                    } else {
                         mConfirmPass.setError("Password is not same");
                     }
                 }
-
-
 
 
             }
@@ -90,14 +95,19 @@ public class BuyerSignupActivity extends AppCompatActivity {
 
     private void addUser() {
 
-        Request request=new Request.Builder()
-                .url(Api.BASE_URL+"/addUser")
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+
+        final Request request = new Request.Builder()
+                .url(Api.BASE_URL + "/addBuyer")
                 .post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
-                        "\t\"names\" : \""+name+"\",\n" +
-                        "\t\"email\" : \""+email+"\",\n" +
-                        "\t\"contact\" : \""+contact+"\",\n" +
-                        "\t\"address\" : \""+aadhar+"\",\n" +
-                        "\t\"password\" : \""+password+"\"\n" +
+                        "\t\"uid\" : \"" + uid + "\",\n" +
+                        "\t\"names\" : \"" + name + "\",\n" +
+                        "\t\"email\" : \"" + email + "\",\n" +
+                        "\t\"contact\" : \"" + contact + "\",\n" +
+                        "\t\"address\" : \"" + address + "\",\n" +
+                        "\t\"password\" : \"" + pass + "\"\n" +
                         "}")).build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -105,10 +115,10 @@ public class BuyerSignupActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(BuyerSignupActivity.this, "Connection Error", Toast.LENGTH_SHORT).show();
+                        progressDialog.hide();
+                        Toast.makeText(BuyerSignupActivity.this, "Connection error", Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
 
             @Override
@@ -116,24 +126,25 @@ public class BuyerSignupActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        progressDialog.hide();
                         try {
-                            String json=response.body().string();
-                            JSONObject mainobj=new JSONObject(json);
-                            String result=mainobj.getString("result");
-                            if(result.equals("success"))
-                            {
-                                Intent i=new Intent(getApplicationContext(),BuyerDashboardActivity.class);
+                            String json = response.body().string();
+                            JSONObject mainObj = new JSONObject(json);
+                            String result = mainObj.getString("result");
+                            if (result.equals("success")) {
+                                Intent i = new Intent(getApplicationContext(), BuyerDashboardActivity.class);
                                 startActivity(i);
                             } else {
-                                Toast.makeText(BuyerSignupActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
                 });
+
             }
         });
     }
