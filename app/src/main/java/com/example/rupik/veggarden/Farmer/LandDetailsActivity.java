@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.rupik.veggarden.Adapters.LandDetailsAdapter;
+import com.example.rupik.veggarden.Farmer.Adapter.LandDetailsAdapter;
 import com.example.rupik.veggarden.Api;
 import com.example.rupik.veggarden.Data.Lands;
 import com.example.rupik.veggarden.R;

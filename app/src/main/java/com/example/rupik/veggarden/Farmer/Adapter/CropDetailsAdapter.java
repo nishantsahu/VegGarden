@@ -1,4 +1,4 @@
-package com.example.rupik.veggarden.Adapters;
+package com.example.rupik.veggarden.Farmer.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;

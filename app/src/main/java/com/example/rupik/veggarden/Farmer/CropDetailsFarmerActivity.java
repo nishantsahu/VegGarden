@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.example.rupik.veggarden.Adapters.CropDetailsAdapter;
+import com.example.rupik.veggarden.Farmer.Adapter.CropDetailsAdapter;
 import com.example.rupik.veggarden.Api;
 import com.example.rupik.veggarden.Data.Crops;
 import com.example.rupik.veggarden.R;

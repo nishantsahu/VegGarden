@@ -1,4 +1,4 @@
-package com.example.rupik.veggarden.Adapters;
+package com.example.rupik.veggarden.Buyer.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.rupik.veggarden.Buyer.DetailedLandBuyerActivity;
 import com.example.rupik.veggarden.Data.Lands;
-import com.example.rupik.veggarden.Farmer.DetailLandActivity;
 import com.example.rupik.veggarden.R;
 
 import java.util.List;
@@ -43,7 +43,7 @@ public class LandDetailsBuyerAdapter extends RecyclerView.Adapter<LandDetailsBuy
         holder.mLandDetailCards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent detail = new Intent(mCtx, DetailLandActivity.class);
+                Intent detail = new Intent(mCtx, DetailedLandBuyerActivity.class);
                 detail.putExtra("landid", lands.getLandid());
                 mCtx.startActivity(detail);
             }

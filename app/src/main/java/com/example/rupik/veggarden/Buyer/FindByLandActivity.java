@@ -8,7 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.example.rupik.veggarden.Adapters.LandDetailsBuyerAdapter;
+import com.example.rupik.veggarden.Buyer.Adapter.LandDetailsBuyerAdapter;
 import com.example.rupik.veggarden.Api;
 import com.example.rupik.veggarden.Data.Lands;
 import com.example.rupik.veggarden.R;

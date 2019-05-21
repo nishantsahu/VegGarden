@@ -1,19 +1,18 @@
-package com.example.rupik.veggarden.Farmer;
+package com.example.rupik.veggarden.Buyer;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rupik.veggarden.Farmer.Adapter.CropDetailsAdapterLand;
 import com.example.rupik.veggarden.Api;
 import com.example.rupik.veggarden.Data.Crops;
+import com.example.rupik.veggarden.Farmer.AddCropActivity;
 import com.example.rupik.veggarden.R;
 
 import org.json.JSONArray;
@@ -32,7 +31,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class DetailLandActivity extends AppCompatActivity {
+public class DetailedLandBuyerActivity extends AppCompatActivity {
 
     TextView mLandName, mLandArea, mSoilType, mLandAddress;
     RecyclerView mCropDetails;
@@ -45,7 +44,7 @@ public class DetailLandActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_land);
+        setContentView(R.layout.activity_detailed_land_buyer);
 
         mLandName = findViewById(R.id.cropDetailFarmerLandName);
         mLandArea = findViewById(R.id.cropDetailFarmerLandArea);
@@ -64,15 +63,6 @@ public class DetailLandActivity extends AppCompatActivity {
         progressDialog.setMessage("Please wait...");
         addCrop = new Intent(getApplicationContext(), AddCropActivity.class);
         getLandDetails();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddCropLand);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addCrop.putExtra("landid",getIntent().getExtras().getString("landid"));
-                startActivity(addCrop);
-            }
-        });
-
     }
 
     private void getCropDetails() {
@@ -91,7 +81,7 @@ public class DetailLandActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         progressDialog.hide();
-                        Toast.makeText(DetailLandActivity.this, "Please check your connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please check your connection", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -115,7 +105,7 @@ public class DetailLandActivity extends AppCompatActivity {
                                 cropsList.add(new Crops(cropId, cropName, cropPrice, cropQuantity, "", ""));
                             }
 
-                            adapter = new CropDetailsAdapterLand(DetailLandActivity.this, cropsList);
+                            adapter = new CropDetailsAdapterLand(DetailedLandBuyerActivity.this, cropsList);
                             mCropDetails.setAdapter(adapter);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -146,7 +136,7 @@ public class DetailLandActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         progressDialog.hide();
-                        Toast.makeText(DetailLandActivity.this, "Please check your connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please check your connection", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -181,3 +171,4 @@ public class DetailLandActivity extends AppCompatActivity {
 
     }
 }
+
