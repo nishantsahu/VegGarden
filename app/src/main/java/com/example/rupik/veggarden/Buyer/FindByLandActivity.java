@@ -1,16 +1,18 @@
-package com.example.rupik.veggarden;
+package com.example.rupik.veggarden.Buyer;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.example.rupik.veggarden.Adapters.CropDetailsAdapter;
-import com.example.rupik.veggarden.Data.Crops;
+import com.example.rupik.veggarden.Adapters.LandDetailsBuyerAdapter;
+import com.example.rupik.veggarden.Api;
+import com.example.rupik.veggarden.Data.Lands;
+import com.example.rupik.veggarden.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,48 +24,40 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class CropDetailsFarmerActivity extends AppCompatActivity {
+public class FindByLandActivity extends AppCompatActivity {
 
-    RecyclerView mCropDetails;
-    CropDetailsAdapter adapter;
-    List<Crops> cropsList;
+    RecyclerView mLandList;
+    List<Lands> landsList;
+    LandDetailsBuyerAdapter adapter;
     OkHttpClient client;
-    String cropId, cropName, landName, cropPrice, cropQuanity, cropLand;
+    String uid;
     ProgressDialog progressDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_land_details_farmer);
+        setContentView(R.layout.activity_find_by_land);
 
-        mCropDetails = findViewById(R.id.cropDetailsFarmer);
-        cropsList = new ArrayList<>();
+        mLandList = findViewById(R.id.landListForBuyers);
+
+        mLandList.setLayoutManager(new LinearLayoutManager(this));
+        mLandList.setHasFixedSize(true);
+
+        landsList = new ArrayList<>();
+
+        client = new OkHttpClient();
+
+        uid = FirebaseAuth.getInstance().getUid();
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading..");
-
-        mCropDetails.setLayoutManager(new LinearLayoutManager(this));
-        client = new OkHttpClient();
-        
-        getCrops();
-    }
-
-    private void getCrops() {
-
+        progressDialog.setMessage("Please wait...");
         progressDialog.show();
-        String uid = FirebaseAuth.getInstance().getUid();
 
         Request request = new Request.Builder()
-                .url(Api.BASE_URL+"/getCropDetailsUser")
-                .post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
-                        "\t\"uid\" : \""+uid+"\"\n" +
-                        "}"))
+                .url(Api.BASE_URL+"/getLandDetailsBuyer")
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -72,8 +66,9 @@ public class CropDetailsFarmerActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        progressDialog.dismiss();
-                        Toast.makeText(CropDetailsFarmerActivity.this, "Check your connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please check your connection.", Toast.LENGTH_SHORT).show();
+                        Intent auth = new Intent(getApplicationContext(), AuthBuyerActivity.class);
+                        startActivity(auth);
                     }
                 });
             }
@@ -84,24 +79,15 @@ public class CropDetailsFarmerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            progressDialog.dismiss();
+                            progressDialog.hide();
                             String json = response.body().string();
                             JSONArray jsonArray = new JSONArray(json);
                             for (int i=0; i<jsonArray.length(); i++) {
                                 JSONObject obj = jsonArray.getJSONObject(i);
-                                cropId = obj.getString("cropid");
-                                landName = obj.getString("landname");
-                                cropName = obj.getString("cropname");
-                                cropPrice = obj.getString("price");
-                                cropLand = obj.getString("landid");
-                                cropQuanity = obj.getString("quantity");
-
-                                cropsList.add(new Crops(cropId, cropName, cropPrice,cropQuanity, cropLand, landName));
+                                landsList.add(new Lands(obj.getString("landname"), ""+obj.getString("landarea")+" meter sq.", obj.getString("address"), obj.getString("landid")));
                             }
-
-                            adapter = new CropDetailsAdapter(getApplicationContext(), cropsList);
-                            mCropDetails.setAdapter(adapter);
-
+                            adapter = new LandDetailsBuyerAdapter(getApplication(), landsList);
+                            mLandList.setAdapter(adapter);
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
@@ -111,6 +97,5 @@ public class CropDetailsFarmerActivity extends AppCompatActivity {
                 });
             }
         });
-
     }
 }

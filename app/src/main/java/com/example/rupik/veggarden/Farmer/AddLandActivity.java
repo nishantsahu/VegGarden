@@ -1,4 +1,4 @@
-package com.example.rupik.veggarden;
+package com.example.rupik.veggarden.Farmer;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,11 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.example.rupik.veggarden.Api;
+import com.example.rupik.veggarden.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

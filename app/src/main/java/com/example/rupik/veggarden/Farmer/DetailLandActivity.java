@@ -1,4 +1,4 @@
-package com.example.rupik.veggarden;
+package com.example.rupik.veggarden.Farmer;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,7 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rupik.veggarden.Adapters.CropDetailsAdapterLand;
+import com.example.rupik.veggarden.Api;
 import com.example.rupik.veggarden.Data.Crops;
+import com.example.rupik.veggarden.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

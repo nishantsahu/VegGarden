@@ -8,10 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.rupik.veggarden.Data.Crops;
-import com.example.rupik.veggarden.EditCropActivity;
+import com.example.rupik.veggarden.Farmer.EditCropActivity;
 import com.example.rupik.veggarden.R;
 
 import java.util.List;

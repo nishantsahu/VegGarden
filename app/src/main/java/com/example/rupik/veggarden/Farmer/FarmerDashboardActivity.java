@@ -1,4 +1,4 @@
-package com.example.rupik.veggarden;
+package com.example.rupik.veggarden.Farmer;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,6 +18,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rupik.veggarden.Api;
+import com.example.rupik.veggarden.MainActivity;
+import com.example.rupik.veggarden.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

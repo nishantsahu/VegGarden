@@ -1,12 +1,18 @@
-package com.example.rupik.veggarden;
+package com.example.rupik.veggarden.Buyer;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rupik.veggarden.Api;
+import com.example.rupik.veggarden.Farmer.AuthFarmerActivity;
+import com.example.rupik.veggarden.MainActivity;
+import com.example.rupik.veggarden.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,6 +33,7 @@ public class BuyerDashboardActivity extends AppCompatActivity {
     TextView mName;
     OkHttpClient client;
     ProgressDialog progressDialog;
+    CardView mFindByLand, mFindByCrop, mMyRequest, mAgreement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +43,20 @@ public class BuyerDashboardActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
 
+        mFindByLand = findViewById(R.id.buyerLandDetails);
+        mFindByCrop = findViewById(R.id.buyerCropDetails);
+        mMyRequest = findViewById(R.id.buyerRequests);
+        mAgreement = findViewById(R.id.buyerAgreements);
+
         checkUserExistance();
+
+        mFindByLand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent findByLand = new Intent(getApplicationContext(), FindByLandActivity.class);
+                startActivity(findByLand);
+            }
+        });
 
     }
 

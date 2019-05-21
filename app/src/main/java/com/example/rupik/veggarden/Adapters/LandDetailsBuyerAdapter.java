@@ -15,12 +15,12 @@ import com.example.rupik.veggarden.R;
 
 import java.util.List;
 
-public class LandDetailsAdapter extends RecyclerView.Adapter<LandDetailsAdapter.LandDetailsViewHolder> {
+public class LandDetailsBuyerAdapter extends RecyclerView.Adapter<LandDetailsBuyerAdapter.LandDetailsViewHolder> {
 
     Context mCtx;
     List<Lands> landsList;
 
-    public LandDetailsAdapter(Context mCtx, List<Lands> landsList) {
+    public LandDetailsBuyerAdapter(Context mCtx, List<Lands> landsList) {
         this.mCtx = mCtx;
         this.landsList = landsList;
     }

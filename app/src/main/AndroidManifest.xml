@@ -11,15 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AuthBuyerActivity"></activity>
-        <activity android:name=".EditCropActivity" />
-        <activity android:name=".CropDetailsFarmerActivity" />
-        <activity android:name=".AddCropActivity" />
-        <activity android:name=".DetailLandActivity" />
-        <activity android:name=".AuthFarmerActivity" />
-        <activity android:name=".AddLandActivity" />
-        <activity android:name=".LandDetailsActivity" />
-        <activity android:name=".BuyerDashboardActivity" />
+        <activity android:name=".Buyer.FindByLandActivity"></activity>
+        <activity android:name=".Buyer.AuthBuyerActivity" />
+        <activity android:name=".Farmer.EditCropActivity" />
+        <activity android:name=".Farmer.CropDetailsFarmerActivity" />
+        <activity android:name=".Farmer.AddCropActivity" />
+        <activity android:name=".Farmer.DetailLandActivity" />
+        <activity android:name=".Farmer.AuthFarmerActivity" />
+        <activity android:name=".Farmer.AddLandActivity" />
+        <activity android:name=".Farmer.LandDetailsActivity" />
+        <activity android:name=".Buyer.BuyerDashboardActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,10 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FarmerSignupActivity" />
-        <activity android:name=".BuyerSignupActivity" />
+        <activity android:name=".Farmer.FarmerSignupActivity" />
+        <activity android:name=".Buyer.BuyerSignupActivity" />
         <activity
-            android:name=".FarmerDashboardActivity"
+            android:name=".Farmer.FarmerDashboardActivity"
             android:label="@string/title_activity_farmer_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
