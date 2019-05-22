@@ -55,6 +55,13 @@ public class FarmerDashboardActivity extends AppCompatActivity
         mLandDetails = findViewById(R.id.farmerLandDetails);
         mCropDetails = findViewById(R.id.farmerCropDetails);
         mRequests = findViewById(R.id.farmerRequests);
+        mRequests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent request = new Intent(getApplicationContext(), FarmerRequestActivity.class);
+                startActivity(request);
+            }
+        });
         mAgreements = findViewById(R.id.farmerAgreements);
         mName = findViewById(R.id.farmername);
         progressDialog = new ProgressDialog(this);
