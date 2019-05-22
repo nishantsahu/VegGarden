@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rupik.veggarden.Buyer.Adapter.CropDetailsBuyerAdapterLand;
 import com.example.rupik.veggarden.Farmer.Adapter.CropDetailsAdapterLand;
 import com.example.rupik.veggarden.Api;
 import com.example.rupik.veggarden.Data.Crops;
@@ -37,7 +38,7 @@ public class DetailedLandBuyerActivity extends AppCompatActivity {
     RecyclerView mCropDetails;
     OkHttpClient client;
     String cropId, cropName, cropPrice, cropQuantity;
-    CropDetailsAdapterLand adapter;
+    CropDetailsBuyerAdapterLand adapter;
     List<Crops> cropsList;
     ProgressDialog progressDialog;
     Intent addCrop;
@@ -105,7 +106,7 @@ public class DetailedLandBuyerActivity extends AppCompatActivity {
                                 cropsList.add(new Crops(cropId, cropName, cropPrice, cropQuantity, "", ""));
                             }
 
-                            adapter = new CropDetailsAdapterLand(DetailedLandBuyerActivity.this, cropsList);
+                            adapter = new CropDetailsBuyerAdapterLand(DetailedLandBuyerActivity.this, cropsList);
                             mCropDetails.setAdapter(adapter);
                         } catch (IOException e) {
                             e.printStackTrace();

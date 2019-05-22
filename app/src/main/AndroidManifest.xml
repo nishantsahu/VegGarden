@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Buyer.DetailedLandBuyerActivity"></activity>
+        <activity android:name=".Buyer.BuyerRequestActivity"></activity>
+        <activity android:name=".Buyer.RequestForCropActivity" />
+        <activity android:name=".Buyer.DetailedLandBuyerActivity" />
         <activity android:name=".Buyer.FindByLandActivity" />
         <activity android:name=".Buyer.AuthBuyerActivity" />
         <activity android:name=".Farmer.EditCropActivity" />
