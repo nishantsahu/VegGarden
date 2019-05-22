@@ -58,6 +58,14 @@ public class BuyerDashboardActivity extends AppCompatActivity {
             }
         });
 
+        mMyRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent request = new Intent(getApplicationContext(), BuyerRequestActivity.class);
+                startActivity(request);
+            }
+        });
+
     }
 
     private void checkUserExistance() {

@@ -74,9 +74,10 @@ public class RequestForCropActivity extends AppCompatActivity {
         Request request = new Request.Builder()
                 .url(Api.BASE_URL+"/sendAgreementRequest")
                 .post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
+                        "\t\"cropname\" : \""+mCropName.getText().toString()+"\",\n" +
+                        "\t\"cropid\" : \""+cropid+"\",\n" +
                         "\t\"buyerid\" : \""+uid+"\",\n" +
                         "\t\"farmerid\" : \""+farmerid+"\",\n" +
-                        "\t\"cropid\" : \""+cropid+"\",\n" +
                         "\t\"duration\" : \""+duration+"\"\n" +
                         "}"))
                 .build();
