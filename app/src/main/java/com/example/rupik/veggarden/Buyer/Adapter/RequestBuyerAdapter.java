@@ -39,12 +39,12 @@ public class RequestBuyerAdapter extends RecyclerView.Adapter<RequestBuyerAdapte
         holder.mCropname.setText(requests.getCropname());
         holder.mFarmerName.setText(requests.getUname());
         holder.mDuration.setText(requests.getDuration() + " Months");
-        if (requests.getAccepted().equals("success")) {
-            holder.mAccepted.setText("true");
-            holder.mAccepted.setTextColor(Integer.parseInt("#00FF00"));
+        if (requests.getAccepted().equals("true")) {
+            holder.mAccepted.setText("Accepted");
+            holder.mAccepted.setTextColor(mCtx.getResources().getColor(R.color.green));
         } else if (requests.getAccepted().equals("false")) {
             holder.mAccepted.setText("Rejected");
-            holder.mAccepted.setTextColor(Integer.parseInt("#FF0000"));
+            holder.mAccepted.setTextColor(mCtx.getResources().getColor(R.color.red));
         }
     }
 

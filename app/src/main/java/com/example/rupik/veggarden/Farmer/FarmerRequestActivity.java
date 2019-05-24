@@ -65,7 +65,7 @@ public class FarmerRequestActivity extends AppCompatActivity {
                 .url(Api.BASE_URL+"/getAgreementsList")
                 .post(RequestBody.create(MediaType.parse("application/json"), "{\n" +
                         "\t\"uid\" : \""+ FirebaseAuth.getInstance().getUid()+"\",\n" +
-                        "\t\"type\" : \"buyer\"\n" +
+                        "\t\"type\" : \"farmer\"\n" +
                         "}"))
                 .build();
 
@@ -90,20 +90,22 @@ public class FarmerRequestActivity extends AppCompatActivity {
                         try {
                             String result = response.body().string();
                             JSONArray jsonArray = new JSONArray(result);
-                            for (int i=0; i<jsonArray.length(); i++) {
+                            for (int i=jsonArray.length()-1; i>=0; i--) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                requestsList.add(new Requests(jsonObject.getString("agreementid"),
-                                        jsonObject.getString("buyerid"),
-                                        jsonObject.getString("farmerid"),
-                                        jsonObject.getString("cropid"),
-                                        jsonObject.getString("duration"),
-                                        jsonObject.getString("created_at"),
-                                        jsonObject.getString("accepted"),
-                                        jsonObject.getString("email"),
-                                        jsonObject.getString("contact"),
-                                        jsonObject.getString("address"),
-                                        jsonObject.getString("name"),
-                                        jsonObject.getString("cropname")));
+                                if (jsonObject.getString("accepted").equals("null")) {
+                                    requestsList.add(new Requests(jsonObject.getString("agreementid"),
+                                            jsonObject.getString("buyerid"),
+                                            jsonObject.getString("farmerid"),
+                                            jsonObject.getString("cropid"),
+                                            jsonObject.getString("duration"),
+                                            jsonObject.getString("created_at"),
+                                            jsonObject.getString("accepted"),
+                                            jsonObject.getString("email"),
+                                            jsonObject.getString("contact"),
+                                            jsonObject.getString("address"),
+                                            jsonObject.getString("name"),
+                                            jsonObject.getString("cropname")));
+                                }
                             }
                             adapter = new RequestFarmerAdapter(FarmerRequestActivity.this, requestsList);
                             requestListFarmer.setAdapter(adapter);

@@ -88,7 +88,7 @@ public class BuyerRequestActivity extends AppCompatActivity {
                         try {
                             String result = response.body().string();
                             JSONArray jsonArray = new JSONArray(result);
-                            for (int i=0; i<jsonArray.length(); i++) {
+                            for (int i=jsonArray.length()-1; i>=0; i--) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 requestsList.add(new Requests(jsonObject.getString("agreementid"),
                                         jsonObject.getString("buyerid"),

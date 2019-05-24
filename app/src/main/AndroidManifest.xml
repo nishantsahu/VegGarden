@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Farmer.RespondFarmerActivity"></activity>
+        <activity android:name=".Farmer.FarmerAgreementActivity"></activity>
+        <activity android:name=".Farmer.RespondFarmerActivity" />
         <activity android:name=".Farmer.FarmerRequestActivity" />
         <activity android:name=".Buyer.BuyerRequestActivity" />
         <activity android:name=".Buyer.RequestForCropActivity" />
