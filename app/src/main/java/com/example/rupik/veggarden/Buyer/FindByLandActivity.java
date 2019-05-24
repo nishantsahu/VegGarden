@@ -84,7 +84,9 @@ public class FindByLandActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(json);
                             for (int i=0; i<jsonArray.length(); i++) {
                                 JSONObject obj = jsonArray.getJSONObject(i);
-                                landsList.add(new Lands(obj.getString("landname"), ""+obj.getString("landarea")+" meter sq.", obj.getString("address"), obj.getString("landid")));
+                                if (!FirebaseAuth.getInstance().getUid().equals(jsonArray.getJSONObject(i).getString("uid"))) {
+                                    landsList.add(new Lands(obj.getString("landname"), ""+obj.getString("landarea")+" meter sq.", obj.getString("address"), obj.getString("landid")));
+                                }
                             }
                             adapter = new LandDetailsBuyerAdapter(getApplication(), landsList);
                             mLandList.setAdapter(adapter);
