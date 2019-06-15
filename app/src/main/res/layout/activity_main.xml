@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_img"
-    tools:context="com.example.rupik.veggarden.MainActivity">
+    tools:context="com.example.nishant.veggarden.MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"

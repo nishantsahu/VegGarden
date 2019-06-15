@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rupik.veggarden">
+    package="com.example.nishant.veggarden">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,33 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Farmer.FarmerAgreementActivity"></activity>
-        <activity android:name=".Farmer.RespondFarmerActivity" />
-        <activity android:name=".Farmer.FarmerRequestActivity" />
-        <activity android:name=".Buyer.BuyerRequestActivity" />
-        <activity android:name=".Buyer.RequestForCropActivity" />
-        <activity android:name=".Buyer.DetailedLandBuyerActivity" />
-        <activity android:name=".Buyer.FindByLandActivity" />
-        <activity android:name=".Buyer.AuthBuyerActivity" />
-        <activity android:name=".Farmer.EditCropActivity" />
-        <activity android:name=".Farmer.CropDetailsFarmerActivity" />
-        <activity android:name=".Farmer.AddCropActivity" />
-        <activity android:name=".Farmer.DetailLandActivity" />
-        <activity android:name=".Farmer.AuthFarmerActivity" />
-        <activity android:name=".Farmer.AddLandActivity" />
-        <activity android:name=".Farmer.LandDetailsActivity" />
-        <activity android:name=".Buyer.BuyerDashboardActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.nishant.veggarden.Farmer.FarmerAgreementActivity"></activity>
+        <activity android:name="com.example.nishant.veggarden.Farmer.RespondFarmerActivity" />
+        <activity android:name="com.example.nishant.veggarden.Farmer.FarmerRequestActivity" />
+        <activity android:name="com.example.nishant.veggarden.Buyer.BuyerRequestActivity" />
+        <activity android:name="com.example.nishant.veggarden.Buyer.RequestForCropActivity" />
+        <activity android:name="com.example.nishant.veggarden.Buyer.DetailedLandBuyerActivity" />
+        <activity android:name="com.example.nishant.veggarden.Buyer.FindByLandActivity" />
+        <activity android:name="com.example.nishant.veggarden.Buyer.AuthBuyerActivity" />
+        <activity android:name="com.example.nishant.veggarden.Farmer.EditCropActivity" />
+        <activity android:name="com.example.nishant.veggarden.Farmer.CropDetailsFarmerActivity" />
+        <activity android:name="com.example.nishant.veggarden.Farmer.AddCropActivity" />
+        <activity android:name="com.example.nishant.veggarden.Farmer.DetailLandActivity" />
+        <activity android:name="com.example.nishant.veggarden.Farmer.AuthFarmerActivity" />
+        <activity android:name="com.example.nishant.veggarden.Farmer.AddLandActivity" />
+        <activity android:name="com.example.nishant.veggarden.Farmer.LandDetailsActivity" />
+        <activity android:name="com.example.nishant.veggarden.Buyer.BuyerDashboardActivity" />
+        <activity android:name="com.example.nishant.veggarden.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Farmer.FarmerSignupActivity" />
-        <activity android:name=".Buyer.BuyerSignupActivity" />
+        <activity android:name="com.example.nishant.veggarden.Farmer.FarmerSignupActivity" />
+        <activity android:name="com.example.nishant.veggarden.Buyer.BuyerSignupActivity" />
         <activity
-            android:name=".Farmer.FarmerDashboardActivity"
+            android:name="com.example.nishant.veggarden.Farmer.FarmerDashboardActivity"
             android:label="@string/title_activity_farmer_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
